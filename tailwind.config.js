@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      'default': ['"Tropical Asian DEMO"', 'sans-serif'],
+    }
   },
   plugins: [],
 }

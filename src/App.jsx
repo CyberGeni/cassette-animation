@@ -247,7 +247,7 @@ function App() {
                     alt=""
                   />
                   <div className="absolute top-0 flex items-center justify-center h-full w-full z-50 ">
-                    <h1 className="absolute top-1 md:top-1.5 lg:top-3 font-['Tropical_Asian_DEMO'] text-4xl sm:text-5xl md:text-6xl">
+                    <h1 className="absolute top-1 md:top-1.5 lg:top-3 font-default text-4xl sm:text-5xl md:text-6xl">
                       TODAY&apos;S MIXTAPE
                     </h1>
                     {/* controls */}
@@ -332,7 +332,7 @@ function App() {
                   : ""
               }`}
             >
-              <span className="uppercase font-['Tropical_Asian_DEMO'] text-[#0D041D] text-center">
+              <span className="uppercase font-default text-[#0D041D] text-center">
                 {theme}
               </span>
               <img
