@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import purpleSelector from "./assets/purple-selector.png";
 import greenSelector from "./assets/green-selector.png";
@@ -31,6 +31,8 @@ import tune from "./assets/tune.svg";
 
 function App() {
   const [theme, setTheme] = useState("purple");
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [song, setSong] = useState(new Audio());
 
   function changeTheme() {
     if (theme === "purple") {
@@ -42,6 +44,65 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    song.src = 'src/assets/unavailable.mp3';
+    song.addEventListener('ended', () => setIsPlaying(false));
+    return () => {
+      song.removeEventListener('ended', () => setIsPlaying(false));
+    };
+  }, []);
+  const handlePlay = () => {
+    if (isPlaying) {
+      pauseAudio();
+    } else {
+      playAudio();
+    }
+  };
+  const playAudio = () => {
+    song.play();
+    setIsPlaying(true);
+  };
+  
+  const pauseAudio = () => {
+    song.pause();
+    setIsPlaying(false);
+  };
+  // const client_id = "72e3fa1b9b6d4c07881e562e8b87a16d";
+  // const client_secret = "e852d8ed23564036b8765071a9abf722";
+  // // axios({
+  //   method: 'post',
+  //   url: 'https://accounts.spotify.com/api/token',
+  //   params: {
+  //     grant_type: 'client_credentials'
+  //   },
+  //   headers: {
+  //     'Content-Type': 'application/x-www-form-urlencoded',
+  //     'Authorization': 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64')
+  //   }
+  // })
+  // .then(response => {
+  //   const access_token = response.data.access_token;
+  //   console.log(access_token);
+  // })
+  // .catch(error => {
+  //   console.log(error);
+  // });
+
+  // useEffect(() => {
+  //   fetch(
+  //     `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=${API_KEY}&artist=AJR&album=Ok+Orchestra&format=json`
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data.album.tracks.track);
+  //       const song = data.album.tracks.track[1].url;
+  //       console.log(song)
+  //       setCurrentSong(song);
+  //     })
+  //     .catch((error) => console.error(error));
+  // }, []);
+
+ 
   return (
     <>
       <main
@@ -55,6 +116,7 @@ function App() {
             : ""
         }`}
       >
+        <audio src={song} />
         {/* background */}
         <div>
           {theme === "green" ? (
@@ -201,7 +263,7 @@ function App() {
                       }`}
                     >
                       <img
-                      className="w-[36px] sm:w-[46px]"
+                        className="w-[36px] sm:w-[46px]"
                         src={
                           theme === "purple"
                             ? purpleRoller
@@ -214,10 +276,10 @@ function App() {
                         alt=""
                       />
                       <img className="w-4" src={prev} alt="" />
-                      <img className="w-4" src={play} alt="" />
+                      <img onClick={handlePlay} className="w-4" src={isPlaying ? pause : play} alt="" />
                       <img className="w-4" src={next} alt="" />
                       <img
-                      className="w-[36px] sm:w-[46px]"
+                        className="w-[36px] sm:w-[46px]"
                         src={
                           theme === "purple"
                             ? purpleRoller
@@ -233,9 +295,17 @@ function App() {
                   </div>
                 </div>
                 <div className="relative flex  justify-center bg-black rounded-full text-white text-center py-1.5 md:py-2">
-                  <img className="absolute w-4 md:w-5 top-2.5 left-4 bg-black" src={tune} alt="" />
-                  <span className="text-center">serenity vol 1</span>
-                  <img className="absolute w-4 md:w-5 top-2.5 right-4 bg-black transform scale-x-[-1]" src={tune} alt="" />
+                  <img
+                    className="absolute w-4 md:w-5 top-2.5 left-4 bg-black"
+                    src={tune}
+                    alt=""
+                  />
+                  <span className="text-center">UNAVAILABLE - Davido ft. Musa Keys</span>
+                  <img
+                    className="absolute w-4 md:w-5 top-2.5 right-4 bg-black transform scale-x-[-1]"
+                    src={tune}
+                    alt=""
+                  />
                 </div>
               </div>
             </div>
