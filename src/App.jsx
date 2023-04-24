@@ -1,8 +1,33 @@
 import "./App.css";
 import { useState } from "react";
-import brownSelector from "./assets/brown-selector.png";
-import greenSelector from "./assets/green-selector.png";
+
 import purpleSelector from "./assets/purple-selector.png";
+import greenSelector from "./assets/green-selector.png";
+import brownSelector from "./assets/brown-selector.png";
+
+import purpleGrainy from "./assets/purple-grainy-bg.svg";
+import greenGrainy from "./assets/green-grainy-bg.svg";
+import brownGrainy from "./assets/brown-grainy-bg.svg";
+
+import purpleScrew from "./assets/purple-screw.svg";
+import greenScrew from "./assets/green-screw.svg";
+import brownScrew from "./assets/brown-screw.svg";
+
+import greenFlowerleft from "./assets/green-flower-left.png";
+import greenFlowerRight from "./assets/green-flower-right.png";
+import greenGif from "./assets/ducky.gif";
+
+import brownFlower from "./assets/flower.gif";
+
+import purpleRoller from "./assets/purple-rolling-thingy.png";
+import greenRoller from "./assets/green-rolling-thingy.png";
+import brownRoller from "./assets/brown-rolling-thingy.png";
+
+import play from "./assets/play.svg";
+import pause from "./assets/pause.svg";
+import next from "./assets/next.svg";
+import prev from "./assets/prev.svg";
+import tune from "./assets/tune.svg";
 
 function App() {
   const [theme, setTheme] = useState("purple");
@@ -20,9 +45,9 @@ function App() {
   return (
     <>
       <main
-        className={`min-h-screen min-w-screen ${
+        className={`relative overflow-hidden min-h-screen min-w-screen ${
           theme === "purple"
-            ? "gif-bg"
+            ? "relative before:contents[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:z-[-1]  before:bg-[url('./assets/shooting-stars.gif')] before:bg-cover before:bg-center before:hue-rotate-[70deg] before:saturate-[1.4] before:brightness-[0.8]"
             : theme === "green"
             ? "bg-[#073222]"
             : theme === "brown"
@@ -30,39 +55,230 @@ function App() {
             : ""
         }`}
       >
-        <section></section>
-        <div
-          onClick={changeTheme}
-          className={`px-5 pr-2.5 py-2.5 w-fit bg-[#0d0d0d]/20 border-[3px] border-white/[0.08] rounded-full flex items-center justify-between space-x-3 backdrop-blur-sm`}
-        >
-          <span className="text-md text-white tracking-wide font-['Inter']">COLOR</span>
+        {/* background */}
+        <div>
+          {theme === "green" ? (
+            <div className="">
+              <img
+                className={`absolute w-72 bottom-5 -left-36`}
+                src={greenFlowerleft}
+                alt=""
+              />
+              <img
+                className={`absolute w-48 -right-28 top-5 `}
+                src={greenFlowerRight}
+                alt=""
+              />
+              <div className="absolute flex justify-center items-center w-screen h-screen">
+                <img
+                  className={`absolute w-64 sm:w-72 md:w-80 lg:w-96 mb-96 md:mb-[30rem] hue-rotate-[114deg] saturate-[0.8] brightness-[1]`}
+                  src={greenGif}
+                  alt=""
+                />
+              </div>
+            </div>
+          ) : theme === "brown" ? (
+            <div className="absolute flex justify-center items-center w-screen h-screen">
+              <img
+                className="absolute sm:w-[40rem] md:w-[45rem] lg:w-[50rem]"
+                src={brownFlower}
+                alt=""
+              />
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
+        {/* cassette section*/}
+        <section className="transition-all w-screen h-screen flex items-center justify-center">
+          {/* main player */}
           <div
-            className={`px-2 pr-1.5 text-2xl w-fit rounded-full flex items-center space-x-1 ${
+            className={`relative shadow-2xl p-1 transition-colors w-11/12 sm:w-5/6 max-w-lg lg:max-w-xl h-fit rounded-3xl bg-gradient-to-br ${
               theme === "purple"
-                ? "bg-[#F9D4FF]"
+                ? "from-[#D97FFF] to-[#5D177A]"
                 : theme === "green"
-                ? "bg-[#88FFD4]"
+                ? "from-[#D2EFF3] to-[#105B40]"
                 : theme === "brown"
-                ? "bg-[#FFDCD9]"
+                ? "from-[#FFDCD9] to-[#6C2812]"
                 : ""
             }`}
           >
-            <span className="uppercase font-['Tropical_Asian_DEMO'] text-[#0D041D]">
-              {theme}
-            </span>
-            <img
-            className="relative z-10 w-6 h-6"
-              src={
+            <div className="absolute top-0 left-0 w-[183%] sm:w-[184%] lg:w-[186%] h-full grid grid-cols-2 px-3 md:px-5 py-4  sm:py-5 md:pt-6 place-content-between ">
+              <img
+                className="w-5 h-5 object-cover"
+                src={
+                  theme === "purple"
+                    ? purpleScrew
+                    : theme === "green"
+                    ? greenScrew
+                    : theme === "brown"
+                    ? brownScrew
+                    : ""
+                }
+                alt=""
+              />
+              <img
+                className="w-5 h-5 object-cover"
+                src={
+                  theme === "purple"
+                    ? purpleScrew
+                    : theme === "green"
+                    ? greenScrew
+                    : theme === "brown"
+                    ? brownScrew
+                    : ""
+                }
+                alt=""
+              />
+              <img
+                className="w-5 h-5 object-cover"
+                src={
+                  theme === "purple"
+                    ? purpleScrew
+                    : theme === "green"
+                    ? greenScrew
+                    : theme === "brown"
+                    ? brownScrew
+                    : ""
+                }
+                alt=""
+              />
+              <img
+                className="w-5 h-5 object-cover"
+                src={
+                  theme === "purple"
+                    ? purpleScrew
+                    : theme === "green"
+                    ? greenScrew
+                    : theme === "brown"
+                    ? brownScrew
+                    : ""
+                }
+                alt=""
+              />
+            </div>
+            <div
+              className={`w-full h-full p-[22px] sm:p-7 md:p-8 lg:p-9 bg-center bg-cover bg-no-repeat rounded-[22px] ${
                 theme === "purple"
-                  ? purpleSelector
+                  ? "bg-[#301660] bg-[url('./assets/purple-pattern-bg.svg')]"
                   : theme === "green"
-                  ? greenSelector
+                  ? "bg-[#125c41] bg-[url('./assets/green-pattern-bg.svg')]"
                   : theme === "brown"
-                  ? brownSelector
+                  ? "bg-[#541f0f] bg-[url('./assets/brown-pattern-bg.svg')]"
                   : ""
-              }
-              alt=""
-            />
+              }`}
+            >
+              {/* cassette screen */}
+              <div className="space-y-1">
+                <div className="relative ">
+                  <img
+                    className="w-full h-full object-cover"
+                    src={
+                      theme === "purple"
+                        ? purpleGrainy
+                        : theme === "green"
+                        ? greenGrainy
+                        : theme === "brown"
+                        ? brownGrainy
+                        : ""
+                    }
+                    alt=""
+                  />
+                  <div className="absolute top-0 flex items-center justify-center h-full w-full z-50 ">
+                    <h1 className="absolute top-1 md:top-1.5 lg:top-3 font-['Tropical_Asian_DEMO'] text-4xl sm:text-5xl md:text-6xl">
+                      TODAY&apos;S MIXTAPE
+                    </h1>
+                    {/* controls */}
+                    <div
+                      className={`border-2 border-black w-4/5 sm:w-[70%] flex justify-between p-1 sm:p-3 rounded-full ${
+                        theme === "purple"
+                          ? "bg-[#1D0C3C]"
+                          : theme === "green"
+                          ? "bg-[#156B4C]"
+                          : theme === "brown"
+                          ? "bg-[#541F0E]"
+                          : ""
+                      }`}
+                    >
+                      <img
+                      className="w-[36px] sm:w-[46px]"
+                        src={
+                          theme === "purple"
+                            ? purpleRoller
+                            : theme === "green"
+                            ? greenRoller
+                            : theme === "brown"
+                            ? brownRoller
+                            : ""
+                        }
+                        alt=""
+                      />
+                      <img className="w-4" src={prev} alt="" />
+                      <img className="w-4" src={play} alt="" />
+                      <img className="w-4" src={next} alt="" />
+                      <img
+                      className="w-[36px] sm:w-[46px]"
+                        src={
+                          theme === "purple"
+                            ? purpleRoller
+                            : theme === "green"
+                            ? greenRoller
+                            : theme === "brown"
+                            ? brownRoller
+                            : ""
+                        }
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="relative flex  justify-center bg-black rounded-full text-white text-center py-1.5 md:py-2">
+                  <img className="absolute w-4 md:w-5 top-2.5 left-4 bg-black" src={tune} alt="" />
+                  <span className="text-center">serenity vol 1</span>
+                  <img className="absolute w-4 md:w-5 top-2.5 right-4 bg-black transform scale-x-[-1]" src={tune} alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* theme changer */}
+        <div className="w-screen">
+          <div
+            className={`absolute h-fit bottom-16 right-0 left-0 mx-auto px-5 pr-2.5 py-2.5 w-fit bg-[#0d0d0d]/20 border-[3px] border-white/[0.08] rounded-full flex items-center justify-between space-x-3 backdrop-blur-sm`}
+          >
+            <span className="text-md text-white tracking-wide font-['Inter']">
+              COLOR
+            </span>
+            <div
+              onClick={changeTheme}
+              className={`hover:cursor-pointer px-2 pr-1.5 text-2xl w-[87px] rounded-full flex items-center justify-between space-x-1 ${
+                theme === "purple"
+                  ? "bg-[#F9D4FF]"
+                  : theme === "green"
+                  ? "bg-[#88FFD4]"
+                  : theme === "brown"
+                  ? "bg-[#FFDCD9]"
+                  : ""
+              }`}
+            >
+              <span className="uppercase font-['Tropical_Asian_DEMO'] text-[#0D041D] text-center">
+                {theme}
+              </span>
+              <img
+                className="relative z-10 w-6 h-6"
+                src={
+                  theme === "purple"
+                    ? purpleSelector
+                    : theme === "green"
+                    ? greenSelector
+                    : theme === "brown"
+                    ? brownSelector
+                    : ""
+                }
+                alt=""
+              />
+            </div>
           </div>
         </div>
       </main>

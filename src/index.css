@@ -1,22 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.gif-bg {
-  position: relative;
-}
-.gif-bg::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('./assets/shooting-stars.gif');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  filter: hue-rotate(70deg) saturate(1.4) brightness(0.8);
-  z-index: -1; /* Make sure the pseudo-element is behind other content */
-}
-/*  bg-purple-700 bg-[url('./assets/shooting-stars.gif')] bg-cover bg-center hue-rotate-[70deg] saturate-[1.4] brightness-[0.8] */
